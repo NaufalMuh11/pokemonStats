@@ -6,12 +6,10 @@ function Navbar({ setPokemonName }) {
   const [pokemonList, setPokemonList] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState("");
 
-  // Mengambil daftar Pokemon dari API saat komponen dimuat
   useEffect(() => {
     Axios.get('https://pokeapi.co/api/v2/pokemon?limit=1000')
       .then((response) => {
         const results = response.data.results.map(pokemon => pokemon.name);
-        // Mengurutkan daftar Pokemon secara alfabetis
         results.sort();
         setPokemonList(results);
       })
@@ -20,7 +18,6 @@ function Navbar({ setPokemonName }) {
       });
   }, []);
 
-  // Menangani pemilihan Pokemon dari dropdown
   const handleSelectPokemon = (pokemon) => {
     setSelectedPokemon(pokemon);
     setPokemonName(pokemon);
@@ -33,7 +30,7 @@ function Navbar({ setPokemonName }) {
           <img src={Logo} alt="Pokemon-Logo" className=""/>
         </div>
         <div className="flex items-center space-x-2">
-          {/* Dropdown untuk memilih Pokemon */}
+
           <select
             value={selectedPokemon}
             onChange={(event) => handleSelectPokemon(event.target.value)}

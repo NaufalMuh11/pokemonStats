@@ -12,7 +12,6 @@ function App() {
     audio.volume = 0.6;
     audio.play();
 
-    // Membersihkan audio ketika komponen tidak lagi digunakan
     return () => {
       audio.pause();
       audio.currentTime = 0;

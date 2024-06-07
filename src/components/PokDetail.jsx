@@ -12,7 +12,7 @@ function PokDetail({ pokemon, pokemonChosen }) {
           <>
             <img src={pokemon.img} alt={pokemon.name} className="h-32 w-32" />
             <h2 className="text-xl font-semibold">{pokemon.name}</h2>
-            <p className="text-sm">Type: {pokemon.type}</p>
+            <p className="text-base">Type: {pokemon.type}</p>
           </>
         ) : (
           <h1>Please choose a Pokemon</h1>
@@ -25,28 +25,28 @@ function PokDetail({ pokemon, pokemonChosen }) {
             <div className="flex items-center space-x-2 ">
               <img src={Hp} alt="HP" className="h-6 w-6" />
               <div>
-                <p>HP: {pokemon.hp}</p>
+                <p className='font-bold'>HP: {pokemon.hp}</p>
                 <progress className="progress progress-warning w-56 h-4 border border-black" value={pokemon.hp} max="250"></progress>
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <img src={Attack} alt="Attack" className="h-6 w-6" />
               <div>
-                <p>Attack: {pokemon.attack}</p>
+                <p className='font-bold'>Attack: {pokemon.attack}</p>
                 <progress className="progress progress-warning w-56 h-4 border border-black" value={pokemon.attack} max="250"></progress>
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <img src={Def} alt="Defense" className="h-6 w-6" />
               <div>
-                <p>Defense: {pokemon.defense}</p>
+                <p className='font-bold'>Defense: {pokemon.defense}</p>
                 <progress className="progress progress-warning w-56 h-4 border border-black" value={pokemon.defense} max="250"></progress>
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <img src={Spd} alt="Defense" className="h-6 w-6" />
               <div>
-                <p>Speed: {pokemon.speed}</p>
+                <p className='font-bold'>Speed: {pokemon.speed}</p>
                 <progress className="progress progress-warning w-56 h-4 border border-black" value={pokemon.defense} max="250"></progress>
               </div>
             </div>
