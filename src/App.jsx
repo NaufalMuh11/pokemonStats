@@ -1,10 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Navbar from './components/Navbar';
 import PokDetail from './components/PokDetail';
 import Axios from 'axios'
+import backgroundMusic from './assets/ldsaf.mp3';
 
 function App() {
+  useEffect(() => {
+    const audio = new Audio(backgroundMusic);
+    audio.loop = true;
+    audio.volume = 0.6;
+    audio.play();
+
+    // Membersihkan audio ketika komponen tidak lagi digunakan
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
+
   const [pokemonName,setPokemonName] = useState("");
   const [pokemonChosen, setPokemonChosen] = useState(false)
   const [pokemon, setPokemon] = useState({
@@ -16,7 +30,7 @@ function App() {
     defense: "",
     type:""});
 
-  const searchPokemon =() =>{
+  const searchPokemon = () =>{
     Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
     .then((response) => {
       setPokemon({
@@ -24,8 +38,9 @@ function App() {
         species: response.data.species.name, 
         img: response.data.sprites.front_default, 
         hp:response.data.stats[0].base_stat,
-        attack: response.data.stats[1].base_stat, // Mengambil stat attack
-        defense: response.data.stats[2].base_stat, // Mengambil stat defense
+        attack: response.data.stats[1].base_stat, 
+        defense: response.data.stats[2].base_stat,
+        speed: response.data.stats[5].base_stat, 
         type:response.data.types[0].type.name})
       ;
       setPokemonChosen(true);
@@ -35,9 +50,15 @@ function App() {
     });
   }
 
+  useEffect(() => {
+    if (pokemonName) {
+      searchPokemon();
+    }
+  }, [pokemonName]);
+
   return (
     <div className='bg-slate-50 h-screen'>
-      <Navbar setPokemonName={setPokemonName} searchPokemon={searchPokemon}/>
+      <Navbar setPokemonName={setPokemonName}/>
       <PokDetail pokemon={pokemon} pokemonChosen={pokemonChosen}/>
     </div>
   );
