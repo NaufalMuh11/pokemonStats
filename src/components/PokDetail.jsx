@@ -1,34 +1,51 @@
 import React from 'react'
+import Attack from "../assets/Attack.png";
+import Hp from "../assets/Hp.png";
+import Def from "../assets/Defense.png";
 
-function PokDetail() {
+function PokDetail({ pokemon, pokemonChosen }) {
   return (
 <div className="flex flex-col w-full lg:flex-row p-4 lg:p-8 max-w-screen-lg mx-auto">
-  <div className="grid flex-grow h-32 w-10 card bg-base-300 rounded-box place-items-center mx-4">
-  {!pokemonChosen ? (
-        <h1> Please choose a Pokemon</h1>
-    ):(
-    <>
-    <img src={pokemon.img} />
-    <h1>{pokemon.name}</h1>
-    </>
-    )
-
-    }content
-  </div>
-  <div className="divider lg:divider-horizontal"></div>
-  <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center mx-4">
-    {pokemonChosen (
-        <>
-        <h3>Species: {pokemon.species}</h3>
-        <h3>Type: {pokemon.type}</h3>
-        <h3>Hp : {pokemon.hp}</h3>
-        <h3>Attack : {pokemon.attack}</h3>
-        <h3>Defense: {pokemon.defense}</h3>
-        </>
-    )}
-  </div>
-</div>
-
+      <div className="grid flex-grow h-auto card bg-base-300 rounded-box place-items-center mx-4">
+        {pokemonChosen ? (
+          <>
+            <img src={pokemon.img} alt={pokemon.name} className="h-32 w-32" />
+            <h2 className="text-xl font-semibold">{pokemon.name}</h2>
+            <p className="text-sm">Type: {pokemon.type}</p>
+          </>
+        ) : (
+          <h1>Please choose a Pokemon</h1>
+        )}
+      </div>
+      <div className="divider lg:divider-horizontal"></div>
+      <div className="flex flex-col justify-start lg:flex-grow h-auto card bg-base-300 rounded-box place-items-center mx-4">
+        {pokemonChosen && (
+          <div className="grid grid-cols-1 gap-4 mt-4">
+            <div className="flex items-center space-x-2 ">
+              <img src={Hp} alt="HP" className="h-6 w-6" />
+              <div>
+                <p>HP: {pokemon.hp}</p>
+                <progress className="progress progress-warning w-56 h-4 border border-black" value={pokemon.hp} max="250"></progress>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <img src={Attack} alt="Attack" className="h-6 w-6" />
+              <div>
+                <p>Attack: {pokemon.attack}</p>
+                <progress className="progress progress-warning w-56 h-4 border border-black" value={pokemon.attack} max="250"></progress>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <img src={Def} alt="Defense" className="h-6 w-6" />
+              <div>
+                <p>Defense: {pokemon.defense}</p>
+                <progress className="progress progress-warning w-56 h-4 border border-black" value={pokemon.defense} max="250"></progress>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
 
