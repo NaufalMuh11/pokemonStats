@@ -2,6 +2,7 @@ import React from 'react'
 import Attack from "../assets/Attack.png";
 import Hp from "../assets/Hp.png";
 import Def from "../assets/Defense.png";
+import Spd from "../assets/Speed.png";
 
 function PokDetail({ pokemon, pokemonChosen }) {
   return (
@@ -39,6 +40,13 @@ function PokDetail({ pokemon, pokemonChosen }) {
               <img src={Def} alt="Defense" className="h-6 w-6" />
               <div>
                 <p>Defense: {pokemon.defense}</p>
+                <progress className="progress progress-warning w-56 h-4 border border-black" value={pokemon.defense} max="250"></progress>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <img src={Spd} alt="Defense" className="h-6 w-6" />
+              <div>
+                <p>Speed: {pokemon.speed}</p>
                 <progress className="progress progress-warning w-56 h-4 border border-black" value={pokemon.defense} max="250"></progress>
               </div>
             </div>
