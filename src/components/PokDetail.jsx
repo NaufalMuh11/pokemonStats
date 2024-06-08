@@ -11,7 +11,7 @@ function PokDetail({ pokemon, pokemonChosen }) {
       <div className="grid flex-grow h-auto card bg-base-300 rounded-box place-items-center mx-4">
         {pokemonChosen ? (
           <>
-            <img src={pokemon.img} alt={pokemon.name} className="size-48" />
+            <img src={pokemon.img} alt={pokemon.name} className="size-48 transition-transform transform hover:scale-110 duration-300 ease-in-out" />
             <h2 className="text-xl font-semibold">{pokemon.name}</h2>
             <p className="text-base">Type: {pokemon.type}</p>
           </>
