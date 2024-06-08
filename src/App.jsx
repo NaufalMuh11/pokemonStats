@@ -3,21 +3,8 @@ import './App.css'
 import Navbar from './components/Navbar';
 import PokDetail from './components/PokDetail';
 import Axios from 'axios'
-import backgroundMusic from './assets/ldsaf.mp3';
 
 function App() {
-  useEffect(() => {
-    const audio = new Audio(backgroundMusic);
-    audio.loop = true;
-    audio.volume = 0.6;
-    audio.play();
-
-    return () => {
-      audio.pause();
-      audio.currentTime = 0;
-    };
-  }, []);
-
   const [pokemonName,setPokemonName] = useState("");
   const [pokemonChosen, setPokemonChosen] = useState(false)
   const [pokemon, setPokemon] = useState({
