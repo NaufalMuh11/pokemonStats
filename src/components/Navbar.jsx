@@ -7,7 +7,7 @@ function Navbar({ setPokemonName }) {
   const [selectedPokemon, setSelectedPokemon] = useState("");
 
   useEffect(() => {
-    Axios.get('https://pokeapi.co/api/v2/pokemon?limit=1000')
+    Axios.get('https://pokeapi.co/api/v2/pokemon?limit=200')
       .then((response) => {
         const results = response.data.results.map(pokemon => pokemon.name);
         results.sort();
